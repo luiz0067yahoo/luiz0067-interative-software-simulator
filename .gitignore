@@ -3,3 +3,5 @@ temp-profile/
 .DS_Store
 Thumbs.db
 *.log
+*.zip
+dist-zip/

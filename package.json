@@ -11,7 +11,8 @@
     "format": "wp-scripts format",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
-    "packages-update": "wp-scripts packages-update"
+    "packages-update": "wp-scripts packages-update",
+    "zip": "create-zip.bat"
   },
   "devDependencies": {
     "@wordpress/scripts": "^27.0.0",
