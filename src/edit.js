@@ -37,6 +37,14 @@ export default function Edit({ attributes, setAttributes }) {
     }
   }, []);
 
+  const getResolvedImageUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('assets/') && typeof window !== 'undefined' && window.simuladorSoftwareSettings?.pluginUrl) {
+      return window.simuladorSoftwareSettings.pluginUrl + url;
+    }
+    return url;
+  };
+
   // Safe active step
   const currentStep = (steps && steps[activeStepIndex]) ? steps[activeStepIndex] : null;
 
@@ -270,7 +278,7 @@ export default function Edit({ attributes, setAttributes }) {
               {currentStep.imageUrl ? (
                 <div>
                   <img
-                    src={currentStep.imageUrl}
+                    src={getResolvedImageUrl(currentStep.imageUrl)}
                     alt={currentStep.title}
                     style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #cbd5e1' }}
                   />
@@ -521,7 +529,7 @@ export default function Edit({ attributes, setAttributes }) {
               <div className="sim-stage-canvas">
                 {currentStep.imageUrl ? (
                   <img
-                    src={currentStep.imageUrl}
+                    src={getResolvedImageUrl(currentStep.imageUrl)}
                     alt={currentStep.title}
                     className="sim-bg-image"
                   />

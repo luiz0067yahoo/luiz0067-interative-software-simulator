@@ -7,10 +7,13 @@
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Luiz
+ * Author URI:        https://profiles.wordpress.org/luiz0067/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       simulador-software-abnt
  * Domain Path:       /languages
+ *
+ * @package           InterativeSoftwareSimulator
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +42,7 @@ add_action( 'init', 'simulador_software_load_textdomain' );
 function simulador_software_register_block() {
     register_block_type( __DIR__ . '/block.json' );
 
-    // Garante que o script frontend possa ser registrado e localizado
+    // Garante que o script frontend e editor possam ser traduzidos
     if ( function_exists( 'wp_set_script_translations' ) ) {
         wp_set_script_translations(
             'custom-simulador-software-editor-script',
@@ -52,6 +55,15 @@ function simulador_software_register_block() {
             SIMULADOR_SOFTWARE_DIR . 'languages'
         );
     }
+
+    // Passa parâmetros auxiliares para o script do editor
+    wp_localize_script(
+        'custom-simulador-software-editor-script',
+        'simuladorSoftwareSettings',
+        array(
+            'pluginUrl' => SIMULADOR_SOFTWARE_URL,
+        )
+    );
 }
 add_action( 'init', 'simulador_software_register_block' );
 
